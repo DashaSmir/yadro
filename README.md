@@ -27,3 +27,10 @@ docker-compose up --build
 
 3. Откройте в браузере: http://localhost:8000
 
+## Тестирование
+1. Тестирование проводится сразу в docker, однако можно запустить вручную выполнив в папке backend
+    pytest -v
+<img width="1474" height="782" alt="image" src="https://github.com/user-attachments/assets/cc1b85c9-7c4a-400a-bbfc-8dfb4cb3a7c2" />
+
+## Внешний вид приложения
+При запуске приложения главная страница выглядит таким образом:
