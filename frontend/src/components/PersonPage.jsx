@@ -1,3 +1,4 @@
+// PersonPage.jsx
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { fetchPerson, fetchRandomPerson } from '../api'
@@ -9,28 +10,45 @@ export default function PersonPage({ random }) {
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        let data
-        if (random) {
-          data = await fetchRandomPerson()
-        } else if (id) {
-          data = await fetchPerson(id)
-        } else {
-          setError(true)
-          setLoading(false)
-          return
-        }
-        setPerson(data)
-      } catch (err) {
-        setError(true)
-      } finally {
-        setLoading(false)
-      }
+  // Функция загрузки случайного человека (для кнопки)
+  const loadRandom = async () => {
+    setLoading(true)
+    setError(false)
+    try {
+      const data = await fetchRandomPerson()
+      setPerson(data)
+    } catch (err) {
+      setError(true)
+    } finally {
+      setLoading(false)
     }
-    load()
-  }, [id, random])
+  }
+
+  // Функция загрузки по ID (для обычного перехода)
+  const loadById = async (userId) => {
+    setLoading(true)
+    setError(false)
+    try {
+      const data = await fetchPerson(userId)
+      setPerson(data)
+    } catch (err) {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (random) {
+      loadRandom()
+    } else if (id) {
+      loadById(id)
+    } else {
+      setError(true)
+      setLoading(false)
+    }
+  }, [id, random]) // пустые зависимости, чтобы сработало только при монтировании
+  // Но при изменении id (например, другой человек по ID) эффект сработает автоматически
 
   if (loading) return <div className={styles.loading}>Загрузка...</div>
   if (error || !person) return (
@@ -56,7 +74,10 @@ export default function PersonPage({ random }) {
       </div>
       <div className={styles.cardFooter}>
         <Link to="/" className={styles.buttonSecondary}>На главную</Link>
-        <Link to="/random" className={styles.buttonInfo}>Случайный человек</Link>
+        {/* Используем кнопку вместо Link */}
+        <button onClick={loadRandom} className={styles.buttonInfo}>
+          Случайный человек
+        </button>
       </div>
     </div>
   )

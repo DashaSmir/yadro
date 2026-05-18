@@ -6,9 +6,7 @@
   margin-top: 1.5rem;
   transition: transform 0.2s ease;
 }
-.card:hover {
-  transform: translateY(-4px);
-}
+
 .cardHeader {
   background-color: #1E22AA;
   padding: 1.25rem 1.5rem;
