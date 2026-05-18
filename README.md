@@ -31,6 +31,7 @@ frontend – React с кастомными стилями.
    docker-compose down -v
    docker-compose up --build
 
+
 3. Откройте в браузере:
    ```bash
    http://localhost:8000
