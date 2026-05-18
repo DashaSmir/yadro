@@ -33,18 +33,48 @@ async def create_person(db: AsyncSession, person: PersonCreate) -> Person:
     await db.refresh(db_person)
     return db_person
 
-async def create_people_bulk(db: AsyncSession, people_data: List[dict]) -> List[Person]:
-    """Массовая вставка с игнорированием дубликатов по email."""
-    existing_emails = set()
-    for person_dict in people_data:
-        existing_emails.add(person_dict.get("email"))
+# async def create_people_bulk(db: AsyncSession, people_data: List[dict]) -> List[Person]:
+#     """Массовая вставка с игнорированием дубликатов по email."""
+#     existing_emails = set()
+#     for person_dict in people_data:
+#         existing_emails.add(person_dict.get("email"))
 
-    result = await db.execute(select(Person.email).where(Person.email.in_(existing_emails)))
-    existing = set(result.scalars().all())
-    new_people = [Person(**p) for p in people_data if p["email"] not in existing]
-    if new_people:
-        db.add_all(new_people)
-        await db.commit()
-        for person in new_people:
-            await db.refresh(person)
+#     result = await db.execute(select(Person.email).where(Person.email.in_(existing_emails)))
+#     existing = set(result.scalars().all())
+#     new_people = [Person(**p) for p in people_data if p["email"] not in existing]
+#     if new_people:
+#         db.add_all(new_people)
+#         await db.commit()
+#         for person in new_people:
+#             await db.refresh(person)
+#     return new_people
+async def create_people_bulk(db: AsyncSession, people_data: List[dict]) -> List[Person]:
+    """Массовая вставка с игнорированием дубликатов по email (включая дубликаты внутри списка)."""
+    # 1. Убираем дубликаты по email внутри переданного списка (сохраняем первое вхождение)
+    seen = {}
+    unique_people = []
+    for p in people_data:
+        email = p.get("email")
+        if email and email not in seen:
+            seen[email] = True
+            unique_people.append(p)
+    if not unique_people:
+        return []
+
+    # 2. Запрашиваем email, которые уже есть в БД
+    emails = [p["email"] for p in unique_people]
+    result = await db.execute(select(Person.email).where(Person.email.in_(emails)))
+    existing_emails = set(result.scalars().all())
+
+    # 3. Оставляем только тех, кого нет в БД
+    new_people_data = [p for p in unique_people if p["email"] not in existing_emails]
+    if not new_people_data:
+        return []
+
+    # 4. Создаём объекты и вставляем
+    new_people = [Person(**p) for p in new_people_data]
+    db.add_all(new_people)
+    await db.commit()
+    for person in new_people:
+        await db.refresh(person)
     return new_people
