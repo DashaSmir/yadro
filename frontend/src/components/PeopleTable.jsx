@@ -77,7 +77,7 @@ import { Link } from 'react-router-dom'
 import { fetchPeople, loadPeople } from '../api'
 import Pagination from './Pagination'
 import LoadForm from './LoadForm'
-import styles from './PeopleTable.module.css'   // импорт модуля
+import styles from './PeopleTable.module.css'  
 
 export default function PeopleTable() {
   const [people, setPeople] = useState([])

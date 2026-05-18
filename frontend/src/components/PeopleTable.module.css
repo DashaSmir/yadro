@@ -1,4 +1,3 @@
-/* PeopleTable.module.css */
 @font-face {
   font-family: 'Gilroy-ExtraBold';
   src: url('./fonts/Gilroy-ExtraBold.woff2') format('woff2');
@@ -14,7 +13,9 @@
   font-style: normal;
   font-display: swap;
 }
-
+* {
+  overflow-x: hidden;
+}
 .tableWrapper {
   margin-top: 1.5rem;
   overflow-x: auto;

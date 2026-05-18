@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { fetchPerson, fetchRandomPerson } from '../api'
-import styles from './PeopleTable.module.css';
+import styles from './PersonPage.module.css'
+
 export default function PersonPage({ random }) {
   const { id } = useParams()
   const [person, setPerson] = useState(null)
@@ -31,20 +32,20 @@ export default function PersonPage({ random }) {
     load()
   }, [id, random])
 
-  if (loading) return <div className="text-center mt-4">Загрузка...</div>
+  if (loading) return <div className={styles.loading}>Загрузка...</div>
   if (error || !person) return (
-    <div className="alert alert-danger mt-4">
+    <div className={styles.errorAlert}>
       <h3>Пользователь не найден</h3>
-      <Link to="/">Вернуться на главную</Link>
+      <Link to="/" className={styles.buttonSecondary}>Вернуться на главную</Link>
     </div>
   )
 
   return (
-    <div className="card mt-3">
-      <div className="card-header bg-primary text-white">
+    <div className={styles.card}>
+      <div className={styles.cardHeader}>
         <h2>Информация о человеке</h2>
       </div>
-      <div className="card-body">
+      <div className={styles.cardBody}>
         <p><strong>ID:</strong> {person.id}</p>
         <p><strong>Пол:</strong> {person.gender}</p>
         <p><strong>Имя:</strong> {person.first_name}</p>
@@ -53,9 +54,9 @@ export default function PersonPage({ random }) {
         <p><strong>Email:</strong> {person.email}</p>
         <p><strong>Место проживания:</strong> {person.location}</p>
       </div>
-      <div className="card-footer">
-        <Link to="/" className="btn btn-secondary">На главную</Link>
-        <Link to="/random" className="btn btn-info ms-2">Случайный человек</Link>
+      <div className={styles.cardFooter}>
+        <Link to="/" className={styles.buttonSecondary}>На главную</Link>
+        <Link to="/random" className={styles.buttonInfo}>Случайный человек</Link>
       </div>
     </div>
   )

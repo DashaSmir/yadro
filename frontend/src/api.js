@@ -4,11 +4,6 @@ const api = axios.create({
 })
 export const fetchPeople = (page, limit = 20) =>
   api.get(`/people?page=${page}&limit=${limit}`).then(res => res.data)
-
-// export const loadPeople = (count) =>
-//   api.post('/load', { count }).then(res => res.data)
-// export const loadPeople = (count) =>
-//   api.post(`/load?count=${count}`).then(res => res.data)
 export const loadPeople = (count) =>
   api.post('/load', { count }).then(res => res.data)
 export const fetchPerson = (id) =>

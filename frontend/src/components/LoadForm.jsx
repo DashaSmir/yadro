@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styles from './LoadForm.module.css'  
+
 export default function LoadForm({ onLoad }) {
   const [count, setCount] = useState(100)
 
@@ -14,14 +15,22 @@ export default function LoadForm({ onLoad }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="row g-3 align-items-end">
-      <div className="col-auto">
-        <label htmlFor="loadCount" className="form-label">Загрузить новых людей</label>
-        <input type="number" id="loadCount" className="form-control" value={count} onChange={e => setCount(e.target.value)} min="1" max="5000" />
-      </div>
-      <div className="col-auto">
-        <button type="submit" className="btn btn-primary">Загрузить</button>
-      </div>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <label htmlFor="loadCount" className={styles.label}>
+        Загрузить новых людей
+      </label>
+      <input
+        type="number"
+        id="loadCount"
+        className={styles.input}
+        value={count}
+        onChange={e => setCount(e.target.value)}
+        min="1"
+        max="5000"
+      />
+      <button type="submit" className={styles.button}>
+        Загрузить
+      </button>
     </form>
   )
 }

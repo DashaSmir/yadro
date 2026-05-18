@@ -1,12 +1,12 @@
-
 .pagination {
   display: flex;
+  flex-wrap: wrap;    
   list-style: none;
   gap: 0.5rem;
   margin-top: 1.5rem;
   justify-content: center;
+  padding-left: 0;
 }
-
 
 .pageLink {
   background-color: white;
@@ -35,4 +35,15 @@
 .disabled .pageLink {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.dots {
+  pointer-events: none;  
+}
+.dotsSpan {
+  display: inline-block;
+  padding: 6px 12px;
+  color: #6c757d;
+  background-color: transparent;
+  font-size: 0.9rem;
 }

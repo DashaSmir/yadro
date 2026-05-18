@@ -1,4 +1,3 @@
-/* PeopleTable.module.css */
 @font-face {
   font-family: 'Gilroy-ExtraBold';
   src: url('./fonts/Gilroy-ExtraBold.woff2') format('woff2');
@@ -15,7 +14,46 @@
   font-display: swap;
 }
 
-.form-label {
+.form {
+  display: flex;
+  flex-direction: column; 
+  align-items: flex-start;
+  gap: 20px; 
+  margin-bottom: 1.5rem;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 16px;
+}
+
+.label {
   font-family: 'Gilroy-ExtraBold', system-ui, sans-serif;
   color:#212529;
+  padding: 0;
+
+}
+.input {
+  font-family: 'Gilroy-Light', system-ui, sans-serif;
+  border: 1px solid #ced4da;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  width: 200px;
+}
+
+.button {
+  background-color: #1E22AA;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  padding: 0.5rem 1.5rem;
+  font-family: 'Gilroy-ExtraBold', system-ui, sans-serif;
+  font-weight: bold;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #DAF251;
+  color: #212529;
+  transform: scale(1.02);
 }
