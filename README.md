@@ -27,7 +27,7 @@ frontend – React с кастомными стилями.
    docker-compose up --build
    
 (Если на этом этапе, докер виснет на каком-то из этапов, необходимо остановить контейнеры и заново его запустить)
-```bash
+   ```bash
    docker-compose down -v
    docker-compose up --build
 
