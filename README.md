@@ -28,8 +28,8 @@ frontend – React с кастомными стилями.
    ```
 (Если на этом этапе, докер виснет на каком-то из этапов, необходимо остановить контейнеры и заново его запустить)
    ```bash
-      docker-compose down -v
-      docker-compose up --build
+   docker-compose down -v
+   docker-compose up --build
    ```
 3. Откройте в браузере:
    ```bash
