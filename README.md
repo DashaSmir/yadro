@@ -23,17 +23,23 @@ frontend – React с кастомными стилями.
    cd yadro
    
 2. Зайдите в папку проекта, запустите приложение Docker и запустите контейнеры в корневой папке:
+```bash
 docker-compose up --build
 
-3. Откройте в браузере: http://localhost:8000
+3. Откройте в браузере:
+```bash
+http://localhost:8000
 
 ## Тестирование
 1. Тестирование проводится сразу в docker, однако можно запустить вручную выполнив в папке backend
-    pytest -v
+   ```bash
+   pytest -v
+   ```
 <img width="1474" height="782" alt="image" src="https://github.com/user-attachments/assets/cc1b85c9-7c4a-400a-bbfc-8dfb4cb3a7c2" />
 
 ## Внешний вид приложения
 1. Главная страница
+
 При запуске приложения главная страница выглядит таким образом:
 <img width="1903" height="1086" alt="Снимок экрана 2026-05-18 180424" src="https://github.com/user-attachments/assets/9972195d-a773-439c-8fbf-b26a0354a043" />
 Дизайн был вдохновлен дизайном сайта YADRO
