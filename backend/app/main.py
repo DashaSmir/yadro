@@ -7,6 +7,11 @@ from app.database import engine, Base, get_db
 from app import crud, schemas, api_client
 import logging
 import os
+from pydantic import BaseModel
+
+class LoadRequest(BaseModel):
+    count: int
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -40,9 +45,11 @@ async def list_people(page: int = 1, limit: int = 20, db: AsyncSession = Depends
         "page": page,
         "pages": (total + limit - 1) // limit
     }
-
 @app.post("/api/load")
-async def load_people(count: int, db: AsyncSession = Depends(get_db)):
+async def load_people(request: LoadRequest, db: AsyncSession = Depends(get_db)):
+    count = request.count
+# @app.post("/api/load")
+# async def load_people(count: int, db: AsyncSession = Depends(get_db)):
     if count <= 0 or count > 5000:
         raise HTTPException(400, "count must be 1-5000")
     people_data = await api_client.fetch_random_people(count)
