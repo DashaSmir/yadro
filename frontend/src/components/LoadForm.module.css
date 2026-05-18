@@ -1,0 +1,21 @@
+/* PeopleTable.module.css */
+@font-face {
+  font-family: 'Gilroy-ExtraBold';
+  src: url('./fonts/Gilroy-ExtraBold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy-Light';
+  src: url('./fonts/Gilroy-Light.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.form-label {
+  font-family: 'Gilroy-ExtraBold', system-ui, sans-serif;
+  color:#212529;
+}

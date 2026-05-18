@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { fetchPerson, fetchRandomPerson } from '../api'
-
+import styles from './PeopleTable.module.css';
 export default function PersonPage({ random }) {
   const { id } = useParams()
   const [person, setPerson] = useState(null)

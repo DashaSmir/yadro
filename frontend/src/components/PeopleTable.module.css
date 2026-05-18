@@ -1,0 +1,90 @@
+/* PeopleTable.module.css */
+@font-face {
+  font-family: 'Gilroy-ExtraBold';
+  src: url('./fonts/Gilroy-ExtraBold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy-Light';
+  src: url('./fonts/Gilroy-Light.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.tableWrapper {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: white;
+}
+
+.thead {
+  background: #1E22AA;
+  color: white;
+}
+
+.th {
+  font-family: 'Gilroy-ExtraBold', system-ui, sans-serif;
+  padding: 14px 12px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #DAF251;
+}
+
+.td {
+  font-family: 'Gilroy-Light', system-ui, sans-serif;
+  padding: 12px 12px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+
+.rowHover:hover {
+  background-color: #f8f9ff;
+  transition: background-color 0.2s ease;
+}
+
+.detailButton {
+  background-color: #1E22AA;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+}
+
+.detailButton:hover {
+  background-color: #DAF251;
+  transform: scale(1.02);
+  color: #212529;
+}
+
+
+@media (max-width: 768px) {
+  .th, .td {
+    padding: 8px 6px;
+    font-size: 0.75rem;
+  }
+  .detailButton {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+  }
+}

@@ -1,0 +1,38 @@
+
+.pagination {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+
+.pageLink {
+  background-color: white;
+  color: #212529;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.pageLink:hover {
+  background-color: #DAF251;
+  color: #212529;
+  transform: scale(1.05);
+}
+
+.active .pageLink {
+  background-color: #1E22AA;
+  color: white;
+}
+
+.disabled .pageLink {
+  opacity: 0.5;
+  pointer-events: none;
+}
